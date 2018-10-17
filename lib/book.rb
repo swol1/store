@@ -11,7 +11,13 @@ class Book < Product
   def self.from_file(file_path)
     file = File.readlines(file_path, chomp: true)
 
-    self.new(name: file[0], genre: file[1], author: file[2], price: file[3], amount: file[4])
+    self.new(
+      name: file[0],
+      genre: file[1],
+      author: file[2],
+      price: file[3],
+      amount: file[4]
+    )
   end
 
   def update(params)
