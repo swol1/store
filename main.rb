@@ -11,3 +11,12 @@ products << Book.new(price: 1024, amount: 25, name: "Идиот", genre: "ром
 products << Book.new(price: 189, amount: 4, name: "Цветы для Элджернона", genre: "научная фантастика", author: "Даниел Киз")
 
 products.each { |product| puts product }
+
+book = Book.new(price: "1024", amount: "25", name: "Идиот")
+
+book.author = "some author"
+
+book.update(author: "Федор Достоевский", genre: "роман", price: "3434")
+
+puts "Вот какие товары у нас есть"
+puts book
