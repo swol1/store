@@ -9,37 +9,38 @@ collection = ProductCollection.from_dir(File.dirname(__FILE__) + '/data')
 
 collection.sort!(by: :price)
 
-arr = []
+user_order = []
 
 price = 0
 
-coll2 = []
+products = []
 
-collection.to_a.each { |product| coll2 << product }
+collection.to_a.each { |product| products << product }
 
 loop do
   puts "Что Вы хотите купить?"
   puts
-  coll2.each_with_index { |product, index| puts "#{index + 1}. #{product}" }
+  products.each_with_index { |product, index| puts "#{index + 1}. #{product}" }
   puts "0. Выход"
 
   user_choice = STDIN.gets.chomp.to_i
+
   if user_choice == 0
     puts "Вы купили: "
     puts
-    puts arr
+    puts user_order
     puts
     puts "С вас - #{price} руб. Спасибо за покупки"
     break
   end
 
-  coll2[user_choice - 1].amount -= 1
+  products[user_choice - 1].amount -= 1
 
   puts
-  puts "Вы выбрали: #{coll2[user_choice - 1]}"
+  puts "Вы выбрали: #{products[user_choice - 1]}"
 
-  arr << coll2[user_choice - 1]
-  price += coll2[user_choice - 1].price
+  user_order << products[user_choice - 1]
+  price += products[user_choice - 1].price
 
   puts
   puts "Всего товаров на сумму: " + price.to_s
