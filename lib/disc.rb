@@ -17,8 +17,8 @@ class Disc < Product
       artist: file[1],
       genre: file[2],
       year: file[3],
-      price: file[4],
-      amount: file[5]
+      price: file[4].to_i,
+      amount: file[5].to_i
     )
   end
 

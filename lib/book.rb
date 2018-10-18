@@ -15,8 +15,8 @@ class Book < Product
       name: file[0],
       genre: file[1],
       author: file[2],
-      price: file[3],
-      amount: file[4]
+      price: file[3].to_i,
+      amount: file[4].to_i
     )
   end
 

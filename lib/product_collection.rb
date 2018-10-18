@@ -42,4 +42,10 @@ class ProductCollection
 
     self
   end
+
+  def buying_options(user_choice)
+    show = []
+    show << @products[user_choice]
+    show
+  end
 end
