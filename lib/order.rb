@@ -1,23 +1,25 @@
 class Order
-  attr_reader :user_order, :cost
+  attr_reader :user_order, :total_price, :all_products
 
   def initialize(products)
-    @all_products = products
     @user_order = []
-    @cost = 0
-  end
-
-  def all
-    @all_products.each_with_index { |product, index| "#{index + 1}. #{product}" }
+    @total_price = 0
+    @all_products = products
   end
 
   def item_choice(user_choice)
     @all_products[user_choice].amount -= 1
     @user_order << @all_products[user_choice]
-    @all_products[user_choice]
+
+    sum_price(user_choice)
   end
 
   def sum_price(user_choice)
-    @cost += @all_products[user_choice].price
+    @total_price += @all_products[user_choice].price
+    remove_sold_out
+  end
+
+  def remove_sold_out
+    @all_products.delete_if { |product| product.amount <= 0 }
   end
 end
