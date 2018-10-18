@@ -18,18 +18,22 @@ coll2 = []
 collection.to_a.each { |product| coll2 << product }
 
 loop do
-  puts
   puts "Что Вы хотите купить?"
   puts
   coll2.each_with_index { |product, index| puts "#{index + 1}. #{product}" }
   puts "0. Выход"
 
   user_choice = STDIN.gets.chomp.to_i
-  puts
+  if user_choice == 0
+    puts "Вы купили: "
+    puts
+    puts arr
+    puts
+    puts "С вас - #{price} руб. Спасибо за покупки"
+    break
+  end
 
   coll2[user_choice - 1].amount -= 1
-
-  abort arr if user_choice == 0
 
   puts
   puts "Вы выбрали: #{coll2[user_choice - 1]}"
@@ -39,5 +43,6 @@ loop do
 
   puts
   puts "Всего товаров на сумму: " + price.to_s
+  puts
 end
 
