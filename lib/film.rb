@@ -1,5 +1,5 @@
 class Film < Product
-  attr_accessor :year, :director
+  attr_reader :year, :director
 
   def initialize(params)
     super

@@ -6,7 +6,6 @@ require_relative "lib/product_collection"
 require_relative "lib/order"
 
 collection = ProductCollection.from_dir(File.dirname(__FILE__) + '/data')
-
 collection.sort!(by: :price)
 
 order = Order.new
@@ -19,13 +18,13 @@ loop do
   end
   puts "0. Выход"
 
-  user_choice = STDIN.gets.to_i - 1
+  user_choice = STDIN.gets.to_i
 
-  user_product = collection.to_a[user_choice]
+  user_product = collection.to_a[user_choice - 1]
 
-  if user_choice == -1 && order.user_order.empty?
+  if user_choice == 0 && order.user_order.empty?
     abort "Вы ничего не выбрали для заказа. До свидания!"
-  elsif user_choice == -1
+  elsif user_choice == 0
     puts "Вы купили: "
     puts
     puts order.user_order
@@ -34,7 +33,7 @@ loop do
     break
   end
 
-  order.item_choice(user_product)
+  order.order_processing(user_product)
 
   puts
   puts "Вы выбрали: #{user_product}"
@@ -42,6 +41,6 @@ loop do
   puts "Всего товаров на сумму: #{order.total_price}"
   puts
 
-  collection.to_a.delete_if { |product| product.amount <= 0 }
+  collection.to_a.reject! { |product| product.amount <= 0 }
 end
 

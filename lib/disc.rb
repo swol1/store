@@ -1,5 +1,5 @@
 class Disc < Product
-  attr_accessor :year, :artist, :genre
+  attr_reader :year, :artist, :genre
 
   def initialize(params)
     super

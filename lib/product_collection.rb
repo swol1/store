@@ -1,9 +1,9 @@
 class ProductCollection
   PRODUCT_TYPES = {
-      film: {dir: 'films', class: Film},
-      book: {dir: 'books', class: Book},
-      disc: {dir: 'discs', class: Disc}
-  }
+    film: { dir: 'films', class: Film },
+    book: { dir: 'books', class: Book },
+    disc: { dir: 'discs', class: Disc }
+  }.freeze
 
   def initialize(products = [])
     @products = products
@@ -12,7 +12,7 @@ class ProductCollection
   def self.from_dir(dir_path)
     products = []
 
-    PRODUCT_TYPES.each do |type, hash|
+    PRODUCT_TYPES.each_value do |hash|
       product_dir = hash[:dir]
       product_class = hash[:class]
 
@@ -33,9 +33,9 @@ class ProductCollection
     when :title
       @products.sort_by! { |product| product.to_s }
     when :price
-      @products.sort_by! { |product| product.price}
+      @products.sort_by! { |product| product.price }
     when :amount
-      @products.sort_by! { |product| product.amount}
+      @products.sort_by! { |product| product.amount }
     end
 
     @products.reverse! if params[:order] == :asc
@@ -44,8 +44,6 @@ class ProductCollection
   end
 
   def buying_options(user_choice)
-    show = []
-    show << @products[user_choice]
-    show
+    show.push(@products[user_choice])
   end
 end

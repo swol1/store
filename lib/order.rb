@@ -3,10 +3,11 @@ class Order
 
   def initialize
     @user_order = []
+    @ordered_amount = []
     @total_price = 0
   end
 
-  def item_choice(user_choice)
+  def order_processing(user_choice)
     user_choice.amount -= 1
     @user_order << user_choice
 

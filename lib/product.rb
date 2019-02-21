@@ -1,5 +1,6 @@
 class Product
-  attr_accessor :price, :amount, :name
+  attr_accessor :amount
+  attr_reader :price, :name
 
   def initialize(params)
     @price = params[:price]
